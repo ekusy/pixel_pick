@@ -12,7 +12,6 @@ color pixel = color(255, 255, 255);
 
 
 void setup() {
-  size(800, 480);
   String[] cams = Capture.list();
 
   if (cams.length == 0) {
@@ -24,7 +23,7 @@ void setup() {
     }
     cam = new Capture(this, cams[0]);
     cam.start();
-    colorMode(RGB);
+    size(cam.width+160, cam.height);
   }
 }
 
@@ -56,7 +55,7 @@ void mouseClicked() {
 void setColorData() {
   int x = mouseX;
   int y = mouseY; 
-  if (x<640) {
+  if (x<cam.width) {
     pixel = pixels[y*width+x];
     fill(pixel);
   }
@@ -64,17 +63,17 @@ void setColorData() {
 
 void drawColorData() {
   if (CLICK == false)
-    text("CLICK = FALSE", 680, 20);
+    text("CLICK = FALSE", cam.width+40, 20);
   else
-    text("CLICK = TRUE", 680, 20);
-  rect(700, 40, 40, 40);
+    text("CLICK = TRUE", cam.width+40, 20);
+  rect(cam.width+60, 40, 40, 40);
 
-  text("R:"+red(pixel), 700, 90);
-  text("G:"+green(pixel), 700, 100);
-  text("B:"+blue(pixel), 700, 110);
-  text("H:"+hue(pixel), 700, 120);
-  text("S:"+saturation(pixel), 700, 130);
-  text("V:"+brightness(pixel), 700, 140);
-  text("a:"+alpha(pixel), 700, 150);
+  text("R:"+red(pixel), cam.width+60, 90);
+  text("G:"+green(pixel), cam.width+60, 100);
+  text("B:"+blue(pixel), cam.width+60, 110);
+  text("H:"+hue(pixel), cam.width+60, 120);
+  text("S:"+saturation(pixel), cam.width+60, 130);
+  text("V:"+brightness(pixel), cam.width+60, 140);
+  text("a:"+alpha(pixel), cam.width+60, 150);
 }
 
