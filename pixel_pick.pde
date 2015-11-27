@@ -2,10 +2,6 @@ import processing.video.*;
 
 Capture cam;
 
-final int rgb = 1;
-final int hsv = 2;
-int colorMode = rgb;
-
 boolean CLICK = false;
 
 color pixel = color(255, 255, 255);
@@ -34,10 +30,10 @@ void draw() {
   } else {
     cam.read();
     image(cam, 0, 0);
-
     if (CLICK == false) {
       setColorData();
     }
+    drawColorData();
   }
 }
 
